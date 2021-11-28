@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Task from './task'
 import ZButton from '../../components/zbutton/zbutton'
 import ZInput from '../../components/zinput/zinput'
-
-
-const API_URL = 'http://192.168.1.10:8080/tasks'
+import axiosClient from '../../core/plugin/axiosClient'
 
 
 export const Tasks = () => {
@@ -17,8 +15,7 @@ export const Tasks = () => {
     // Fetch tasks from server
     useEffect(() => {
         const getTasks = async () => {
-            const req = await fetch(API_URL)
-            const res = await req.json()
+            const res = await axiosClient.get('/tasks')
             setTasks(res.data)
         }
         getTasks()
@@ -27,20 +24,13 @@ export const Tasks = () => {
 
 
     /*
-    *   Hanndle
+    *   Handle
     */
    // Add task
     const onAddTask = async () => {
         if (!task) return
         setLoading(true)
-        const req = await fetch(API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ text: task })
-        })
-        const res = await req.json()
+        const res = await axiosClient.post('/tasks', { text: task })
         if (res.success) {
             setLoading(false)
             setTasks([...tasks, res.data])
@@ -52,10 +42,7 @@ export const Tasks = () => {
     // Delete task
     const onDelete = async (ID) => {
         setLoading(true)
-        const req = await fetch(`${API_URL}/${ID}`, {
-            method: 'DELETE'
-        })
-        const res = await req.json()
+        const res = await axiosClient.delete(`/tasks/${ID}`)
         if (res.success) {
             setLoading(false)
             setTasks([...tasks.filter(el => el.id !== ID)])
@@ -67,13 +54,7 @@ export const Tasks = () => {
     // Check task
     const onDone = async (ID) => {
         setLoading(true)
-        const req = await fetch(`${API_URL}/${ID}/status`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-        const res = await req.json()
+        const res = await axiosClient.put(`/tasks/${ID}/status`)
         if (res.success) {
             setLoading(false)
             setTasks([...tasks.map(task => task.id === ID ? { ...task, status: !task.status } : task)])
