@@ -10,11 +10,12 @@ const Task = (props) => {
 
     return (
         <>
-            <div className={`task__wrap ${props.item.status && 'status__done'}`}>
+            <div className='task__wrap'>
+                <div className={`task__status ${props.item.status && 'status__done'}`}></div>
                 <div className='task'>{props.item.text}</div>
                 <div className='actions'>
-                    <ZButton className='del__task' onClick={onDelete} type='error' name='Delete' />
                     <ZButton className='done__task' onClick={onDone} type='success' name='Done' />
+                    <ZButton className='del__task' onClick={onDelete} type='error' name='Delete' />
                 </div>
             </div>
         </>

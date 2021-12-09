@@ -5,7 +5,7 @@ import ZInput from '../../components/zinput/zinput'
 import axiosClient from '../../core/plugin/axiosClient'
 
 
-export const Tasks = () => {
+const Tasks = () => {
 
     // Initialize state
     const [task, setTask] = useState()
@@ -15,8 +15,14 @@ export const Tasks = () => {
     // Fetch tasks from server
     useEffect(() => {
         const getTasks = async () => {
+            setLoading(true)
             const res = await axiosClient.get('/tasks')
-            setTasks(res.data)
+            if (res.success) {
+                setLoading(false)
+                setTasks(res.data)
+            } else {
+                console.log(res.message)
+            }
         }
         getTasks()
     }, [])
@@ -94,3 +100,5 @@ export const Tasks = () => {
         </div>
     )
 }
+
+export default Tasks

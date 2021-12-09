@@ -1,25 +1,51 @@
-/* Task */
+/*
+    Task
+*/
 .task__wrap {
+    padding: 10px 15px;
     margin-bottom: 5px;
+    margin-right: 5px;
+    position: relative;
+
     border: 1px solid #bdc3c7;
     border-radius: 5px;
-    position: relative;
-    margin-right: 5px;
+
+    display: flex;
+    align-items: center;
 }
 
 .task__wrap:last-child {
     margin-bottom: 0;
 }
 
-.status__done {
-    border-left: 8px solid #27ae60;
+
+/* Status */
+.task__status {
+    height: 15px;
+    width: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    border-radius: 5px;
+    border: 2px solid #bdc3c7;
+
+    transition: all 0.3s ease;
+    box-shadow:  0 0 10px #bdc3c746;
+    background-color: transparent;
 }
 
+.task__status.status__done {
+    border: 2px solid #27ae60;
+    box-shadow:  0 0 10px #27ae5f63;
+}
+
+/* Content */
 .task {
     padding: 6px 16px;
     cursor: pointer;
 }
 
+/* Actions */
 .actions {
     position: absolute;
     min-width: 30%;
@@ -27,16 +53,19 @@
     z-index: 1;
     right: 0;
     top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .del__task {
     display: none;
-    float: right;
+    margin-right: 5px;
 }
 
 .done__task {
     display: none;
-    float: right;
     margin-right: 10px;
 }
 
@@ -47,6 +76,8 @@
 .actions:hover .del__task {
     display: block;
 }
+
+
 
 /* 
     Task List
