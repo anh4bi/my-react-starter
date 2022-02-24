@@ -2,11 +2,11 @@
 import React from 'react'
 import './zbutton.css'
 
-const ZButton = props => {
+const ZButton = ({ type, className, onClick, text }) => {
     return (
-        <>
-            <button className={`btn btn-${props.type} ${props.className}`} onClick={props.onClick}>{props.name}</button>
-        </>
+        <React.Fragment>
+            <button className={`btn btn-${type} ${className}`} onClick={onClick}>{text}</button>
+        </React.Fragment>
     )
 }
 

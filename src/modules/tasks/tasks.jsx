@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Task from './task'
+import TaskCreate from './task-create'
 import ZButton from '../../components/zbutton/zbutton'
 import ZInput from '../../components/zinput/zinput'
 import axiosClient from '../../core/plugin/axiosClient'
@@ -11,6 +12,7 @@ const Tasks = () => {
     const [task, setTask] = useState()
     const [tasks, setTasks] = useState([])
     const [isLoading, setLoading] = useState(false)
+    const [modal, setModal] = useState(false)
 
     // Fetch tasks from server
     useEffect(() => {
@@ -32,7 +34,7 @@ const Tasks = () => {
     /*
     *   Handle
     */
-   // Add task
+    // Add task
     const onAddTask = async () => {
         if (!task) return
         setLoading(true)
@@ -85,10 +87,12 @@ const Tasks = () => {
      */
     return (
         <div className='tasks__container'>
+            <TaskCreate isShowing={modal} hide={() => setModal(!modal)} />
             <div className='header__tasks'>
-                <ZButton className='add__task' name='Add Task' type='primary' onClick={onAddTask} />
+                <ZButton className='add__task' text='Add Task' type='primary' onClick={() => setModal(!modal)} />
                 <ZInput className='input__task' onEnter={onSubmit} onChange={onText} placeholder='Enter new task' />
                 {isLoading && <div className='loading' />}
+                
             </div>
             <div className='body__tasks'>
                 {tasks.map((task) => {
