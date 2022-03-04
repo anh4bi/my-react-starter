@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import './task.css'
 
 const TaskCreate = ({ isShowing, hide }) => isShowing ? 

@@ -175,7 +175,7 @@ svg.un-done {
     
     height: 100vh;
     width: 100vw;
-    background: gray;
+    backdrop-filter: blur(2px);
 
     display: flex;
     justify-content: center;
@@ -185,5 +185,23 @@ svg.un-done {
 .modal-wrapper {
   height: 50vh;
   width: 50vw;
-  background: red;
+  background: white;
+
+  border: 2px solid salmon;
+  border-radius: 15px;
+}
+
+.modal {
+    height: 100%;
+    width: 100%;
+
+    padding: 5px 10px;
+}
+
+.modal-header {
+    width: 100%;
+}
+
+.modal-close-button {
+    float: right;
 }
