@@ -9,43 +9,81 @@
     padding: 6px 16px;
     border-radius: 5px;
     font-weight: 600;
-    background-color: white;
     cursor: pointer;
     transition: all ease-in-out 0.5s;
+    border: 1px solid transparent;
+}
+
+.btn:hover {
+    background: transparent;
 }
 
 .btn:focus {
     outline: none;
 }
 
+
 /* Primary */
-.btn-primary {
+.btn-primary__outline {
     border: 1px solid var(--primary);
     color: var(--primary);
 }
 
-.btn-primary:hover {
+.btn-primary__outline:hover {
     color: white;
     background-color: var(--primary);
 }
 
+.btn-primary:hover {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-primary {
+    color: white;
+    background-color: var(--primary);
+}
+
+
 /* Success */
-.btn-success {
+.btn-success__outline {
     border: 1px solid var(--success);
     color: var(--success);
 }
 
-.btn-success:hover {
+.btn-success__outline:hover {
     color: white;
     background-color: var(--success); 
 }
 
+.btn-success:hover {
+    border: 1px solid var(--success);
+    color: var(--success);
+}
+
+.btn-success {
+    color: white;
+    background-color: var(--success); 
+}
+
+
 /* Error */
-.btn-error {
+.btn-error__outline {
     border: 1px solid var(--error);
     color: var(--error);
 }
+
+.btn-error__outline:hover {
+    color: white;
+    background-color: var(--error); 
+}
+
 .btn-error:hover {
+    border: 1px solid var(--error);
+    color: var(--error);
+}
+
+.btn-error {
     color: white;
     background-color: var(--error); 
 }

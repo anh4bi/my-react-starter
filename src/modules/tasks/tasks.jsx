@@ -2,30 +2,30 @@ import React, { useState, useEffect } from 'react'
 import Task from './task'
 import TaskCreate from './task-create'
 import ZButton from '../../components/zbutton/zbutton'
-import ZInput from '../../components/zinput/zinput'
 import axiosClient from '../../core/plugin/axiosClient'
 
 
 const Tasks = () => {
 
     // Initialize state
-    const [task, setTask] = useState()
     const [tasks, setTasks] = useState([])
     const [isLoading, setLoading] = useState(false)
     const [modal, setModal] = useState(false)
 
+
+    const getTasks = async () => {
+        setLoading(true)
+        const res = await axiosClient.get('/tasks')
+        if (res.success) {
+            setLoading(false)
+            setTasks(res.data)
+        } else {
+            console.log(res.message)
+        }
+    }
+
     // Fetch tasks from server
     useEffect(() => {
-        const getTasks = async () => {
-            setLoading(true)
-            const res = await axiosClient.get('/tasks')
-            if (res.success) {
-                setLoading(false)
-                setTasks(res.data)
-            } else {
-                console.log(res.message)
-            }
-        }
         getTasks()
     }, [])
 
@@ -34,19 +34,6 @@ const Tasks = () => {
     /*
     *   Handle
     */
-    // Add task
-    const onAddTask = async () => {
-        if (!task) return
-        setLoading(true)
-        const res = await axiosClient.post('/tasks', { text: task })
-        if (res.success) {
-            setLoading(false)
-            setTasks([...tasks, res.data])
-        } else {
-            console.log(res.message)
-        }
-    }
-
     // Delete task
     const onDelete = async (ID) => {
         setLoading(true)
@@ -71,14 +58,10 @@ const Tasks = () => {
         }
     }
 
-    const onSubmit = (task) => {
-        setLoading(true)
-        setTask(task)
-        onAddTask()
-    }
 
-    const onText = (event) => {
-        setTask(event)
+    const handleModal = () => {
+        getTasks()
+        setModal(!modal)
     }
 
 
@@ -87,12 +70,10 @@ const Tasks = () => {
      */
     return (
         <div className='tasks__container'>
-            <TaskCreate isShowing={modal} hide={() => setModal(!modal)} />
+            <TaskCreate isShowing={modal} hide={() => handleModal()} />
             <div className='header__tasks'>
+            {isLoading && <div className='loading' />}
                 <ZButton className='add__task' text='Add Task' type='primary' onClick={() => setModal(!modal)} />
-                <ZInput className='input__task' onEnter={onSubmit} onChange={onText} placeholder='Enter new task' />
-                {isLoading && <div className='loading' />}
-                
             </div>
             <div className='body__tasks'>
                 {tasks.map((task) => {

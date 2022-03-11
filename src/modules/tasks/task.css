@@ -19,6 +19,7 @@
 }
 
 
+
 /* Status */
 .task__status {
     height: 15px;
@@ -30,14 +31,16 @@
     border: 2px solid #bdc3c7;
 
     transition: all 0.3s ease;
-    box-shadow:  0 0 10px #bdc3c746;
+    box-shadow: 0 0 10px #bdc3c746;
     background-color: transparent;
 }
 
 .task__status.status__done {
     border: 2px solid #27ae60;
-    box-shadow:  0 0 10px #27ae5f63;
+    box-shadow: 0 0 10px #27ae5f63;
 }
+
+
 
 /* Content */
 .task {
@@ -49,6 +52,8 @@
     text-decoration: line-through;
     color: #bdc3c7;
 }
+
+
 
 /* Actions */
 .actions {
@@ -74,11 +79,11 @@
     margin-right: 10px;
 }
 
-.actions:hover .done__task {
+.task__wrap:hover .done__task {
     display: block;
 }
 
-.actions:hover .del__task {
+.task__wrap:hover .del__task {
     display: block;
 }
 
@@ -90,12 +95,24 @@
 .tasks__container {
     border-radius: 5px;
     margin-top: 10px;
+
+    display: block;
 }
 
 .header__tasks {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
+
+    margin-bottom: 15px;
 }
+
+.add__task {
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: 200px;
+}
+
 
 .loading {
     border: 5px solid #f3f3f3;
@@ -143,7 +160,10 @@
 }
 
 
-/*  Task Modal Create
+
+/* 
+ Task Modal Create
+ 
  */
 
 .task-create-container {
@@ -172,7 +192,7 @@ svg.un-done {
     z-index: 99;
     top: 0;
     left: 0;
-    
+
     height: 100vh;
     width: 100vw;
     backdrop-filter: blur(2px);
@@ -183,12 +203,15 @@ svg.un-done {
 }
 
 .modal-wrapper {
-  height: 50vh;
-  width: 50vw;
-  background: white;
+    width: 50vw;
+    background: white;
 
-  border: 2px solid salmon;
-  border-radius: 15px;
+    border: 2px solid salmon;
+    border-radius: 15px;
+}
+
+.modal-wrapper:focus {
+    outline: none;
 }
 
 .modal {
@@ -200,8 +223,24 @@ svg.un-done {
 
 .modal-header {
     width: 100%;
+    display: relative;
+}
+
+.modal-title {
+    float: left;
 }
 
 .modal-close-button {
     float: right;
+}
+
+
+/* Task Create - Modal */
+.task-create__container {
+    display: block;
+    padding-bottom: 10px;
+}
+
+textarea.task-update__text {
+    width: 100%;
 }
