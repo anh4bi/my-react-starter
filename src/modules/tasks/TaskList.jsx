@@ -28,7 +28,7 @@ const TaskList = () => {
     // Fetch tasks from server
     useEffect(() => {
         getTasks()
-    }, [])
+    })
 
 
 
