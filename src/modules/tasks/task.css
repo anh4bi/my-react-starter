@@ -114,17 +114,6 @@
 }
 
 
-.loading {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #e74c3c;
-    border-radius: 50%;
-    margin: auto 10px;
-    width: 30px;
-    height: 30px;
-    animation: spin 2s linear infinite;
-    margin-left: auto;
-}
-
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -161,9 +150,9 @@
 
 
 
-/* 
+/*
  Task Modal Create
- 
+
  */
 
 .task-create-container {
@@ -177,6 +166,8 @@
 svg {
     height: 30px;
     width: 30px;
+    min-width: 30px;
+    min-height: 30px;
 }
 
 svg.done {

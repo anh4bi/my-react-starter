@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import Task from './task'
-import TaskCreate from './task-create'
-import ZButton from '../../components/zbutton/zbutton'
-import axiosClient from '../../core/plugin/axiosClient'
+import React, { useState, useEffect, useContext } from 'react'
+import Task from './Task'
+import TaskCreate from './TaskCreate'
+import ZButton from 'components/zbutton/zbutton'
+import axiosClient from 'core/plugin/axiosClient'
+import LoadingContext from 'core/context/loading-context'
 
 
-const Tasks = () => {
+const TaskList = () => {
 
     // Initialize state
     const [tasks, setTasks] = useState([])
-    const [isLoading, setLoading] = useState(false)
     const [modal, setModal] = useState(false)
+    const { setLoading } = useContext(LoadingContext)
 
 
     const getTasks = async () => {
@@ -72,7 +73,6 @@ const Tasks = () => {
         <div className='tasks__container'>
             <TaskCreate isShowing={modal} hide={() => handleModal()} />
             <div className='header__tasks'>
-            {isLoading && <div className='loading' />}
                 <ZButton className='add__task' text='Add Task' type='primary' onClick={() => setModal(!modal)} />
             </div>
             <div className='body__tasks'>
@@ -86,4 +86,4 @@ const Tasks = () => {
     )
 }
 
-export default Tasks
+export default TaskList

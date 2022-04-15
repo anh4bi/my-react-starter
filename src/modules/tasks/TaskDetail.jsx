@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import ZButton from '../../components/zbutton/zbutton'
-import axiosClient from '../../core/plugin/axiosClient'
+import ZButton from 'components/zbutton/zbutton'
+import axiosClient from 'core/plugin/axiosClient'
 
 const TaskDetail = () => {
 
@@ -29,6 +29,9 @@ const TaskDetail = () => {
             getDetailTask()
         }
     }, [urlParams.ID, state.state])
+
+
+
 
     return (
         <React.Fragment>

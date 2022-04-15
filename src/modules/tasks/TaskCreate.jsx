@@ -1,20 +1,25 @@
 import React from 'react'
-import { useState } from 'react'
-import axiosClient from '../../core/plugin/axiosClient'
-import ZButton from '../../components/zbutton/zbutton'
+import { useState, useContext } from 'react'
+import axiosClient from 'core/plugin/axiosClient'
+import ZButton from 'components/zbutton/zbutton'
+import LoadingContext from 'core/context/loading-context'
 import './task.css'
+
 
 const TaskCreate = ({ isShowing, hide }) => {
 
   const [task, setTask] = useState('')
+  const { setLoading } = useContext(LoadingContext)
 
   const onCreate = async () => {
     if (!task) return
+    setLoading(true)
 
     const res = await axiosClient.post('/tasks', { text: task })
     if (res.success) {
       setTask('')
       hide()
+      setLoading(false)
     } else {
       console.log(res.message)
     }

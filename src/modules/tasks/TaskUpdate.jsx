@@ -1,14 +1,16 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
-import axiosClient from '../../core/plugin/axiosClient'
-import ZButton from '../../components/zbutton/zbutton'
+import axiosClient from 'core/plugin/axiosClient'
+import ZButton from 'components/zbutton/zbutton'
+import LoadingContext from 'core/context/loading-context'
 
 
 const TaskUpdate = () => {
 
     const parmas = useParams()
     const state = useLocation()
+    const { setLoading } = useContext(LoadingContext)
 
     const [task, setTask] = useState({ status: false })
 
@@ -32,9 +34,11 @@ const TaskUpdate = () => {
 
     const onUpdate = async () => {
         if (!task) return
+        setLoading(true)
 
         const res = await axiosClient.put(`/tasks/${parmas.ID}`, { text: task.text, status: task.status })
         if (res.success) {
+            setLoading(false)
             console.log(res.message)
         } else {
             console.log(res.message)

@@ -1,10 +1,16 @@
 import React from 'react'
+import { useContext } from 'react'
 import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 import './header.css'
+import LoadingContext from 'core/context/loading-context'
 
 const Header = ({ name }) => {
+  const { isLoading } = useContext(LoadingContext);
+
+
     return (
         <React.Fragment>
+            <div className={`loader ${ !isLoading ? 'loading_none' : 'loading' }`} ></div>
             <div className='header__container'>
                 <h1 className='brand__name'>{name}</h1>
                 <div className='navigation__bar'>
@@ -27,5 +33,3 @@ const NavLink = ({ to, children }) => {
 }
 
 export default Header
-
-

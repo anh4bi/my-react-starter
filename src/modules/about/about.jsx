@@ -1,6 +1,12 @@
 import React from 'react'
+import { useEffect } from 'react'
+
 
 const About = () => {
+
+  useEffect(() => {
+  }, [])
+
     return (
         <React.Fragment>
             <div className="about__container">

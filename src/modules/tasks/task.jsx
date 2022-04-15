@@ -1,11 +1,11 @@
 import React from 'react'
 import './task.css'
-import ZButton from '../../components/zbutton/zbutton'
+import ZButton from 'components/zbutton/zbutton'
 import { useNavigate } from 'react-router-dom'
 
 const Task = (props) => {
 
-    let { id, status, text } = props.item
+    let { id, status, text } = props.item || {}
 
     const navigate = useNavigate()
     const onDelete = () => props.onDelete(id)
