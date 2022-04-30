@@ -3,7 +3,7 @@ import './task.css'
 import ZButton from 'components/zbutton/zbutton'
 import { useNavigate } from 'react-router-dom'
 
-const Task = (props) => {
+const TaskInline = (props) => {
 
     let { id, status, text } = props.item || {}
 
@@ -34,4 +34,4 @@ const Task = (props) => {
     )
 }
 
-export default Task
+export default TaskInline

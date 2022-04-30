@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import Task from './Task'
+import TaskInline from './TaskInline'
 import TaskCreate from './TaskCreate'
 import ZButton from 'components/zbutton/zbutton'
 import axiosClient from 'core/plugin/axiosClient'
@@ -78,7 +78,7 @@ const TaskList = () => {
             <div className='body__tasks'>
                 {tasks.map((task) => {
                     return (
-                        <Task key={task.id} item={task} onDone={onDone} onDelete={onDelete} />
+                        <TaskInline key={task.id} item={task} onDone={onDone} onDelete={onDelete} />
                     )
                 })}
             </div>

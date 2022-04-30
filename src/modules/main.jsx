@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import About from './about/about'
+import About from './About'
 import NotFound from './NotFound'
 import TaskList from './tasks/TaskList'
 import TaskUpdate from './tasks/TaskUpdate'
